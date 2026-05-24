@@ -1,0 +1,25 @@
+{
+  "name": "ticket-app",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Support ticket app monorepo (API + web).",
+  "workspaces": [
+    "apps/api",
+    "apps/web"
+  ],
+  "scripts": {
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:reset": "npm -w apps/api run db:reset --if-present",
+    "dev": "concurrently -n api,web -c blue,magenta \"npm -w apps/api run dev --if-present\" \"npm -w apps/web run dev --if-present\"",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
