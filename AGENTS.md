@@ -113,6 +113,11 @@ Important focused tests:
 
 ## Agent Working Rules
 
+- Explain current behavior
+- Identify the smallest safe implementation plan
+- List files likely to change
+- Call out assumptions and risks
+- Wait for confirmation if the change is ambiguous, destructive or broad
 - Prefer small, scoped changes.
 - Do not commit secrets or local environment files.
 - Keep `.env` ignored.
@@ -120,20 +125,20 @@ Important focused tests:
 - Run relevant tests after behavior changes.
 - For database-dependent API work, ensure Postgres is running and seeded with `npm run db:reset`.
 - Preserve the existing project structure unless there is a clear reason to change it.
+- Changes should not be pushed directly to main.
 
-## Before considering work complete:
+## Definition of Done
 
-1. Inspect the diff
-2. Run relevant tests
-3. Run typecheck
-4. Run lint when practical
-5. Manually verify the affected user flow if the UI is involved
-
-Add future instructions here, for example:
-
-- Coding style preferences:
-- Review expectations:
-- Deployment notes:
-- Production environment assumptions:
-- Branching and commit conventions:
-- Areas agents should avoid changing:
+A task is complete only when:
+1. The requested behavior is implemented with the smallest reasonable change.
+2. The diff has been inspected.
+3. Relevant tests have been run, or skipped with a clear explanation.
+4. Typecheck has been run for touched workspaces when practical.
+5. Lint has been run when practical.
+6. UI changes have been manually verified when practical.
+7. The final response summarizes:
+   - files changed
+   - behavior changed
+   - validation performed
+   - risks or assumptions
+   - suggested follow-up
